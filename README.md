@@ -55,9 +55,10 @@ f5finder.py [-c BIGIP_BASE BIGIP] -f string [string ...] [-s prefix [prefix ...]
 
 | Argument | Description |
 |---|---|
-| `-c BIGIP_BASE BIGIP` | Custom BIG-IP config files. Accepts plain filenames (looked up in the current directory) or full/relative paths. Defaults to `bigip_base.conf` and `bigip.conf` in the current directory |
-| `-f string [string ...]` | One or more strings to search inside configuration blocks (**required**) |
-| `-s prefix [prefix ...]` | Filter results: only print blocks starts with the given prefix(es) |
+| `-h, --help` | Show the help message and exit |
+| `-c, --config BIGIP_BASE BIGIP` | Custom BIG-IP config files (base and main). Accepts plain filenames (looked up in the current directory) or full/relative paths. Defaults to `bigip_base.conf` and `bigip.conf` in the current directory |
+| `-f, --find string [string ...]` | One or more strings to search inside configuration blocks (**required**) |
+| `-s, --startswith prefix [prefix ...]` | Filter results: only print blocks starts with the given prefix(es) |
 
 If a file is not found or cannot be read due to permission issues, `f5finder` exits with a clear error message.
 
