@@ -41,7 +41,7 @@ No installation required. Run directly with Python.
 
 ### Windows
 
-A pre-compiled Windows executable is included in the repository, built with [PyInstaller](https://pyinstaller.org/) 6.19.0. No Python installation is needed, just download and run `f5finder.exe`. For convenience, you can add it to a folder in your system `PATH` to invoke it from any directory.
+A pre-compiled Windows executable is included in the repository, built with PyInstaller 6.19.0. No Python installation is needed, just download and run `f5finder.exe`. For convenience, you can add it to a folder in your system `PATH` to invoke it from any directory.
 
 ---
 
