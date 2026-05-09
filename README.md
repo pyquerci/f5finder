@@ -130,7 +130,7 @@ f5finder.py -f VLAN_1024 | grep -c "ltm virtual"
 This syntax is **not natively available on Windows**. To use it on Windows, you need one of the following:
 
 - **WSL** (Windows Subsystem for Linux) provides a native Linux shell environment directly on Windows
-- **[Cmder](https://cmder.app/)** a popular open source terminal emulator for Windows (MIT license) that supports Unix-style commands and piping
+- **Cmder** a popular open source terminal emulator for Windows (MIT license) that supports Unix-style commands and piping
 
 ---
 
