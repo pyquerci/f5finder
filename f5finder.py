@@ -1,6 +1,6 @@
 # Author: Andrea Querci
-# version: 1.0
-# project: https://github.com/pyquerci/f5finder\
+# version: 1.0.0
+# project: https://github.com/pyquerci/f5finder
 # license: GPLv2
 
 
