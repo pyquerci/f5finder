@@ -26,7 +26,7 @@ It is particularly useful during **migration activities**, when only specific po
 ## Requirements
 
 - Python 3.10+
-- Uses only Python standard library modules (`argparse`, `sys`) no `pip install` required
+- Uses only Python standard library modules (`argparse`, `pathlib`); no `pip install` required.
 
 ---
 
