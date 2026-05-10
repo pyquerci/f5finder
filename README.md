@@ -137,3 +137,12 @@ This syntax is **not natively available on Windows**. To use it on Windows, you 
 ## License
 
 This project is licensed under the **GNU General Public License v2.0 (GPLv2)**. You are free to use, modify, and distribute this software under the terms of that license. See the [LICENSE](LICENSE) file for the full license text.
+
+---
+
+## Donations
+
+If you value the work and want to help support its development, feel free to make a donation. Your support will be greatly appreciated:
+
+- PayPal: https://paypal.me/tuonome
+- Buy Me a Coffee: https://buymeacoffee.com/pyquerci
