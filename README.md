@@ -111,11 +111,11 @@ These prefixes were identified through direct study of BIG-IP configuration file
 
 ## Shell Integration
 
-`f5finder` prints results to standard output, so it integrates naturally with any Linux/Unix shell pipeline. The following are just a few examples of what you can do with standard Linux shell syntax (`|`, `>`, `>>`):
+`f5finder` prints results to standard output, so it integrates naturally with any Linux/Unix shell pipeline. The following are just a few examples of what you can do with some standard Linux shell syntax:
 
 ```bash
-# Filter results further with grep
-f5finder.py -f VLAN_1024 | grep "destination"
+# Filter results further with grep and awk
+f5finder.py -f VLAN_1024 | grep "destination" | awk "{print $NF}"
 
 # Save results to a file
 f5finder.py -f VLAN_1024 > results.txt
