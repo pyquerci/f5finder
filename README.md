@@ -16,8 +16,8 @@ It is particularly useful during **migration activities**, when only specific po
 
 - Parses both `bigip_base.conf` and `bigip.conf` in a single run
 - Searches across all major F5 configuration sections (`net`, `ltm`, `apm`, `auth`, `ilx`, `security`, `sys`, `pem`, `wom`)
-- Supports multi-keyword search a block is returned if **any** of the given strings matches
-- Optional prefix filtering to narrow results to a specific block type
+- Supports multi-keyword search, a block is returned if **any** of the given strings matches
+- Optional prefix filtering to narrow results to one or more specific block types
 - Deduplicates results each matching block is printed only once
 - Custom config file paths via CLI argument
 
