@@ -118,7 +118,7 @@ These prefixes were identified through direct study of BIG-IP configuration file
 f5finder.py -f VLAN_1024 | grep "destination" | awk "{print $NF}"
 
 # Save results to a file
-f5finder.py -f VLAN_1024 > results.txt
+f5finder -f "tag " -s "net vlan" | grep tag | awk "{print $2}" > all_vlan.txt
 
 # Append results to an existing file
 f5finder.py -f VLAN_1025 >> results.txt
