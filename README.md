@@ -144,5 +144,5 @@ This project is licensed under the **GNU General Public License v2.0 (GPLv2)**. 
 
 If you value the work and want to help support its development, feel free to make a donation. Your support will be greatly appreciated:
 
-- PayPal: https://paypal.me/tuonome
+- PayPal: https://paypal.me/pyquerci
 - Buy Me a Coffee: https://buymeacoffee.com/pyquerci
