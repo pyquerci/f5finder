@@ -73,13 +73,13 @@ f5finder.py [-c BIGIP_BASE BIGIP]
 | `-h, --help` | Show the help message and exit. |
 | `-c, --config BIGIP_BASE BIGIP` | Custom BIG-IP config files. Accepts plain filenames (looked up in the current directory) or full/relative paths. Defaults to `bigip_base.conf` and `bigip.conf` in the current directory. |
 | `-f, --find string [string ...]` | Include blocks containing any of the given strings (`*STRING*`). |
-| `-Fs, --find-startswith string [string ...]` | Include blocks containing a token that starts with any of the given strings (`STRING*`). |
-| `-Fe, --find-endswith string [string ...]` | Include blocks containing a token that ends with any of the given strings (`*STRING`). |
+| `-Fs, --find-startswith string [string ...]` | Include blocks where any word starts with any of the given values (`STRING*`). |
+| `-Fe, --find-endswith string [string ...]` | Include blocks where any word ends with any of the given values (`*STRING`). |
 | `-Fw, --find-word string [string ...]` | Include blocks containing any of the given strings as an exact word (`STRING`). |
 | `-Fn, --find-network IPv4/PREFIX [IPv4/PREFIX ...]` | Include blocks containing an IP address or subnet that falls within any of the given networks. |
 | `-e, --exclude string [string ...]` | Exclude blocks containing any of the given strings (`*STRING*`). |
-| `-Es, --exclude-startswith string [string ...]` | Exclude blocks containing a token that starts with any of the given strings (`STRING*`). |
-| `-Ee, --exclude-endswith string [string ...]` | Exclude blocks containing a token that ends with any of the given strings (`*STRING`). |
+| `-Es, --exclude-startswith string [string ...]` | Exclude blocks where any word starts with any of the given values (`STRING*`). |
+| `-Ee, --exclude-endswith string [string ...]` | Exclude blocks where any word ends with any of the given values (`*STRING`). |
 | `-Ew, --exclude-word string [string ...]` | Exclude blocks containing any of the given strings as an exact word (`STRING`). |
 | `-En, --exclude-network IPv4/PREFIX [IPv4/PREFIX ...]` | Exclude blocks containing an IP address or subnet that falls within any of the given networks. |
 | `-Fm, --find-menu string [string ...]` | Filter results: only print blocks whose first line starts with any of the given prefixes (`STRING*`). |
