@@ -51,7 +51,8 @@ class F5Config:
         exclude_ends: list[str] | None = None,
         exclude_words: list[str] | None = None,
         exclude_nets: list[str] | None = None,
-        section_startswith: list[str] | None = None,
+        find_menu: list[str] | None = None,
+        exclude_menu: list[str] | None = None,
         section_print: bool = False
     ) -> None:
 
@@ -135,10 +136,16 @@ class F5Config:
             if matched and block not in cache:
                 first_line = block.splitlines()[0]
 
-                if section_startswith is None or any(
+                if find_menu is None or any(
                     first_line.startswith(se)
-                    for se in section_startswith
+                    for se in find_menu
                 ):
+                    if exclude_menu and any(
+                        first_line.startswith(se)
+                        for se in exclude_menu
+                    ):
+                        continue
+
                     cache.add(block)
                     if section_print:
                         print(first_line)
@@ -214,7 +221,7 @@ def valid_network(value: str) -> str:
         ipaddress.ip_network(net, strict=False)
         return value
     except ValueError:
-        raise argparse.ArgumentTypeError(f"invalid network: {value}")
+        raise SystemExit(f"error: invalid network: {value}")
 
 
 def load_file(path: str) -> str:
@@ -244,8 +251,9 @@ def parse_arguments() -> argparse.Namespace:
             "[-Ee string [string ...]] "
             "[-Ew string [string ...]] "
             "[-En IPv4/PREFIX [IPv4/PREFIX ...]] "
-            "[-Ss string [string ...]] "
-            "[-Sp]"
+            "[-Fm string [string ...]] "
+            "[-Em string [string ...]] "
+            "[-p]"
         ),
         formatter_class=argparse.RawTextHelpFormatter,
         epilog=(
@@ -342,15 +350,22 @@ def parse_arguments() -> argparse.Namespace:
     )
 
     parser.add_argument(
-        "-Ss",
-        "--section-startswith",
+        "-Fm",
+        "--find-menu",
         nargs="+",
-        help="filter by section header (*STRING)",
+        help="filter by section header (STRING*)",
     )
 
     parser.add_argument(
-        "-Sp",
-        "--section-print",
+        "-Em",
+        "--exclude-menu",
+        nargs="+",
+        help="exclude by section header (STRING*)",
+    )
+
+    parser.add_argument(
+        "-p",
+        "--print",
         action="store_true",
         help="print first line only",
     )
@@ -391,13 +406,14 @@ def main() -> None:
         find_ends=args.find_endswith,
         find_words=args.find_word,
         find_nets=args.find_network,
+        find_menu=args.find_menu,
         exclude=args.exclude,
         exclude_starts=args.exclude_startswith,
         exclude_ends=args.exclude_endswith,
         exclude_words=args.exclude_word,
         exclude_nets=args.exclude_network,
-        section_startswith=args.section_startswith,
-        section_print=args.section_print,
+        exclude_menu=args.exclude_menu,
+        section_print=args.print,
     )
 
 
