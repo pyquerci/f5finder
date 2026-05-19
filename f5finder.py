@@ -420,5 +420,5 @@ def main() -> None:
 if __name__ == "__main__":
     try:
         main()
-    except BrokenPipeError:
+    except (BrokenPipeError, OSError):
         pass
