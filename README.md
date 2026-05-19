@@ -16,9 +16,14 @@ It is particularly useful during **migration activities**, when only specific po
 
 - Parses both `bigip_base.conf` and `bigip.conf` in a single run
 - Searches across all major F5 configuration sections (`net`, `ltm`, `apm`, `auth`, `ilx`, `security`, `sys`, `pem`, `wom`)
-- Supports multi-keyword search, a block is returned if **any** of the given strings matches
-- Optional prefix filtering to narrow results to one or more specific block types
-- Deduplicates results each matching block is printed only once
+- Supports multi-keyword search; a block is returned if **any** of the given strings matches
+- Multiple filter types: contains, prefix, suffix, exact word, and IP/network match
+- Exclude filters to remove unwanted blocks from results
+- IP/network-aware search: match hosts, subnets, or entire networks using CIDR notation
+- Optional section filtering to narrow results to one or more specific block types
+- Option to print only the first line of each matching block
+- Deduplicates results; each matching block is printed only once
+- Unix pipe support for integration with shell pipelines
 - Custom config file paths via CLI argument
 
 ---
@@ -26,7 +31,7 @@ It is particularly useful during **migration activities**, when only specific po
 ## Requirements
 
 - Python 3.10+
-- Uses only Python standard library modules (`argparse`, `pathlib`); no `pip install` required.
+- Uses only Python standard library modules (`argparse`, `re`, `pathlib`, `ipaddress`); no `pip install` required.
 
 ---
 
@@ -48,7 +53,19 @@ A pre-compiled Windows executable is included in the repository, built with PyIn
 ## Usage
 
 ```
-f5finder.py [-c BIGIP_BASE BIGIP] -f string [string ...] [-s prefix [prefix ...]]
+f5finder.py [-c BIGIP_BASE BIGIP]
+            [-f string [string ...]]
+            [-Fs string [string ...]]
+            [-Fe string [string ...]]
+            [-Fw string [string ...]]
+            [-Fn IPv4/PREFIX [IPv4/PREFIX ...]]
+            [-e string [string ...]]
+            [-Es string [string ...]]
+            [-Ee string [string ...]]
+            [-Ew string [string ...]]
+            [-En IPv4/PREFIX [IPv4/PREFIX ...]]
+            [-Ss string [string ...]]
+            [-Sp]
 ```
 
 ### Arguments
@@ -57,10 +74,20 @@ f5finder.py [-c BIGIP_BASE BIGIP] -f string [string ...] [-s prefix [prefix ...]
 |---|---|
 | `-h, --help` | Show the help message and exit. |
 | `-c, --config BIGIP_BASE BIGIP` | Custom BIG-IP config files. Accepts plain filenames (looked up in the current directory) or full/relative paths. Defaults to `bigip_base.conf` and `bigip.conf` in the current directory. |
-| `-f, --find string [string ...]` | One or more strings to search inside configuration blocks (**required**). |
-| `-s, --startswith prefix [prefix ...]` | Filter results: only print blocks starts with the given prefix(es). |
+| `-f, --find string [string ...]` | Include blocks containing any of the given strings (`*STRING*`). |
+| `-Fs, --find-startswith string [string ...]` | Include blocks containing a token that starts with any of the given strings (`STRING*`). |
+| `-Fe, --find-endswith string [string ...]` | Include blocks containing a token that ends with any of the given strings (`*STRING`). |
+| `-Fw, --find-word string [string ...]` | Include blocks containing any of the given strings as an exact word (`STRING`). |
+| `-Fn, --find-network IPv4/PREFIX [IPv4/PREFIX ...]` | Include blocks containing an IP address or subnet that falls within any of the given networks. |
+| `-e, --exclude string [string ...]` | Exclude blocks containing any of the given strings (`*STRING*`). |
+| `-Es, --exclude-startswith string [string ...]` | Exclude blocks containing a token that starts with any of the given strings (`STRING*`). |
+| `-Ee, --exclude-endswith string [string ...]` | Exclude blocks containing a token that ends with any of the given strings (`*STRING`). |
+| `-Ew, --exclude-word string [string ...]` | Exclude blocks containing any of the given strings as an exact word (`STRING`). |
+| `-En, --exclude-network IPv4/PREFIX [IPv4/PREFIX ...]` | Exclude blocks containing an IP address or subnet that falls within any of the given networks. |
+| `-Ss, --section-startswith string [string ...]` | Filter results: only print blocks whose first line starts with any of the given prefixes. |
+| `-Sp, --section-print` | Print only the first line of each matching block instead of the full block; it gives you a quick idea of which blocks you filtered. |
 
-If a file is not found or cannot be read due to permission issues, `f5finder` exits with a clear error message.
+If no include filter (`-f`, `-Fs`, `-Fe`, `-Fw`, `-Fn`) is specified, all blocks are returned (subject to any active exclude filters). If a file is not found or cannot be read due to permission issues, `f5finder` exits with a clear error message.
 
 ### Examples
 
@@ -72,10 +99,22 @@ f5finder.py -f cache-path
 f5finder.py -f %2 %4 VLAN_1024 VLAN_1025
 
 # Search for "VLAN_1024" only in "ltm virtual" blocks, using custom config files
-f5finder.py -c base.conf main.conf -f VLAN_1024 -s "ltm virtual"
+f5finder.py -c base.conf main.conf -f VLAN_1024 -Ss "ltm virtual"
 
-# Print all blocks of type "apm" (empty string matches everything)
-f5finder.py -f "" -s "apm"
+# Print all blocks of type "apm" (no include filter returns everything)
+f5finder.py -Ss "apm"
+
+# Find all blocks containing an IP in the 10.0.0.0/8 range
+f5finder.py -Fn 10.0.0.0/8
+
+# Find all "ltm virtual" blocks, excluding any that reference a specific pool
+f5finder.py -Ss "ltm virtual" -Ew pool_maintenance
+
+# Print only the first line of each matching "net vlan" block
+f5finder.py -Ss "net vlan" -Sp
+
+# Search by suffix: find blocks referencing objects ending in "_prod"
+f5finder.py -Fe _prod
 ```
 
 ---
@@ -107,6 +146,16 @@ The current block ends as soon as the next section header is encountered.
 
 These prefixes were identified through direct study of BIG-IP configuration files. If your environment includes additional top-level sections not listed in `SECTIONS`, simply add the corresponding prefix to the list.
 
+### IP/Network Matching
+
+The `-Fn` and `-En` options accept one or more IPv4 addresses or CIDR prefixes. For each block, `f5finder` extracts all IPv4 addresses and subnets found in the text and checks whether any of them fall within the given target network. The following cases all count as a match:
+
+- An exact host IP that belongs to the target network
+- A subnet that is equal to the target network
+- A subnet that is entirely contained within the target network
+
+A bare IP address without a prefix (e.g. `10.0.0.1`) is treated as a `/32` host.
+
 ---
 
 ## Shell Integration
@@ -118,13 +167,16 @@ These prefixes were identified through direct study of BIG-IP configuration file
 f5finder.py -f VLAN_1024 | grep "destination" | awk "{print $NF}"
 
 # Save results to a file
-f5finder -f "tag " -s "net vlan" | grep tag | awk "{print $2}" | sort > all_vlans.txt
+f5finder.py -Ss "net vlan" -Sp | grep tag | awk "{print $2}" | sort > all_vlans.txt
 
 # Append results to an existing file
 f5finder.py -f VLAN_1025 >> results.txt
 
 # Count the number of matching entries
 f5finder.py -f VLAN_1024 | grep -c "ltm virtual"
+
+# Pipe output of one search into another
+f5finder.py -f VLAN_1024 | f5finder.py -Fw disabled
 ```
 
 This syntax is **not natively available on Windows**. To use it on Windows, you need one of the following:
