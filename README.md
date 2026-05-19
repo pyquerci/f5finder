@@ -104,23 +104,17 @@ f5finder.py -f %2 %4 VLAN_1024 VLAN_1025
 # Search for "VLAN_1024" only in "ltm virtual" blocks, using custom config files
 f5finder.py -c base.conf main.conf -f VLAN_1024 -Fm "ltm virtual"
 
-# Print all blocks of type "apm" (no include filter returns everything)
+# Print all blocks of type "apm"
 f5finder.py -Fm "apm"
 
-# Find all blocks containing an IP in the 10.0.0.0/8 range
-f5finder.py -Fn 10.0.0.0/8
+# Find all blocks containing an IP in the 192.168.37.0/24 range
+f5finder.py -Fn 192.168.37.0/24
 
-# Find all "ltm virtual" blocks, excluding any that reference a specific pool
-f5finder.py -Fm "ltm virtual" -Ew pool_maintenance
+# Find all "ltm virtual " blocks, excluding any that reference a specific pool
+f5finder.py -Fm "ltm virtual " -Ee MY_POOL_NAME
 
 # Print only the first line of each matching "net vlan" block
 f5finder.py -Fm "net vlan" -p
-
-# Search by suffix: find blocks referencing objects ending in "_prod"
-f5finder.py -Fe _prod
-
-# Exclude all "sys" blocks from results
-f5finder.py -f VLAN_1024 -Em "sys"
 ```
 
 ---
@@ -170,19 +164,19 @@ A bare IP address without a prefix (e.g. `10.0.0.1`) is treated as a `/32` host.
 
 ```bash
 # Filter results further with grep and awk
-f5finder.py -f VLAN_1024 | grep "destination" | awk "{print $NF}"
+f5finder.py -Fm "ltm virtual " -f %8 | grep destination | awk "{print$2}"
 
 # Save results to a file
-f5finder.py -Fm "net vlan" -p | grep tag | awk "{print $2}" | sort > all_vlans.txt
+f5finder.py -Fm "net vlan" | grep tag | awk "{print$NF}" | sort > all_vlans.txt
 
 # Append results to an existing file
 f5finder.py -f VLAN_1025 >> results.txt
 
 # Count the number of matching entries
-f5finder.py -f VLAN_1024 | grep -c "ltm virtual"
+f5finder.py | grep -c "ltm virtual "
 
 # Pipe output of one search into another
-f5finder.py -f VLAN_1024 | f5finder.py -Fw disabled
+f5finder.py -Fm "ltm virtual " | f5finder -f MY_POOL
 ```
 
 This syntax is **not natively available on Windows**. To use it on Windows, you need one of the following:
