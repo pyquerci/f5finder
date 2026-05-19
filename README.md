@@ -77,12 +77,12 @@ f5finder.py [-c BIGIP_BASE BIGIP]
 | `-Fe, --find-endswith string [string ...]` | Include blocks where any word ends with any of the given values (`*STRING`). |
 | `-Fw, --find-word string [string ...]` | Include blocks containing any of the given strings as an exact word (`STRING`). |
 | `-Fn, --find-network IPv4/PREFIX [IPv4/PREFIX ...]` | Include blocks containing an IP address or subnet that falls within any of the given networks. |
+| `-Fm, --find-menu string [string ...]` | Filter results: only print blocks whose first line starts with any of the given prefixes (`STRING*`). |
 | `-e, --exclude string [string ...]` | Exclude blocks containing any of the given strings (`*STRING*`). |
 | `-Es, --exclude-startswith string [string ...]` | Exclude blocks where any word starts with any of the given values (`STRING*`). |
 | `-Ee, --exclude-endswith string [string ...]` | Exclude blocks where any word ends with any of the given values (`*STRING`). |
 | `-Ew, --exclude-word string [string ...]` | Exclude blocks containing any of the given strings as an exact word (`STRING`). |
 | `-En, --exclude-network IPv4/PREFIX [IPv4/PREFIX ...]` | Exclude blocks containing an IP address or subnet that falls within any of the given networks. |
-| `-Fm, --find-menu string [string ...]` | Filter results: only print blocks whose first line starts with any of the given prefixes (`STRING*`). |
 | `-Em, --exclude-menu string [string ...]` | Exclude results: skip blocks whose first line starts with any of the given prefixes (`STRING*`). |
 | `-p, --print` | Print only the first line of each matching block instead of the full block; it gives you a quick idea of which blocks you filtered. |
 
