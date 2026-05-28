@@ -267,7 +267,7 @@ def parse_arguments() -> argparse.Namespace:
         "-a",
         "--about",
         action="store_true",
-        help="display program information and license details",
+        help="show author, version, project URL and license information",
     )
 
     parser.add_argument(
