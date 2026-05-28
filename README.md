@@ -51,6 +51,7 @@ A pre-compiled Windows executable is included in the repository, built with PyIn
 
 ```
 f5finder.py [-c BIGIP_BASE BIGIP]
+            [-a]
             [-f string [string ...]]
             [-Fs string [string ...]]
             [-Fe string [string ...]]
@@ -71,6 +72,7 @@ f5finder.py [-c BIGIP_BASE BIGIP]
 | Argument | Description |
 |---|---|
 | `-h, --help` | Show the help message and exit. |
+| `-a, --about` | Show author, version, project URL and license information. |
 | `-c, --config BIGIP_BASE BIGIP` | Custom BIG-IP config files. Accepts plain filenames (looked up in the current directory) or full/relative paths. Defaults to `bigip_base.conf` and `bigip.conf` in the current directory. |
 | `-f, --find string [string ...]` | Include blocks containing any of the given strings (`*STRING*`). |
 | `-Fs, --find-startswith string [string ...]` | Include blocks where any word starts with any of the given values (`STRING*`). |
