@@ -239,19 +239,19 @@ def load_file(path: str) -> str:
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        usage=(
-            "%(prog)s [-c BIGIP_BASE BIGIP] "
+        usage=("%(prog)s [-c BIGIP_BASE BIGIP] "
+            "[-a] "
             "[-f string [string ...]] "
             "[-Fs string [string ...]] "
             "[-Fe string [string ...]] "
             "[-Fw string [string ...]] "
             "[-Fn IPv4/PREFIX [IPv4/PREFIX ...]] "
+            "[-Fm string [string ...]] "
             "[-e string [string ...]] "
             "[-Es string [string ...]] "
             "[-Ee string [string ...]] "
             "[-Ew string [string ...]] "
             "[-En IPv4/PREFIX [IPv4/PREFIX ...]] "
-            "[-Fm string [string ...]] "
             "[-Em string [string ...]] "
             "[-p]"
         ),
@@ -260,13 +260,14 @@ def parse_arguments() -> argparse.Namespace:
             "description:\n"
             "  search and filter configuration blocks in F5 BIG-IP files\n"
             "  unix pipes are also supported\n\n"
-
-            "about:\n"
-            "  author: Andrea Querci\n"
-            "  version: 1.0\n"
-            "  project: https://github.com/pyquerci/f5finder\n"
-            "  license: GPLv2\n\n"
         ),
+    )
+
+    parser.add_argument(
+        "-a",
+        "--about",
+        action="store_true",
+        help="display program information and license details",
     )
 
     parser.add_argument(
@@ -274,7 +275,7 @@ def parse_arguments() -> argparse.Namespace:
         "--config",
         nargs=2,
         metavar=("BIGIP_BASE", "BIGIP"),
-        help="BIG-IP config files (base and main)",
+        help="BIG-IP config files (default: bigip_base.conf and bigip.conf)",
     )
 
     parser.add_argument(
@@ -367,7 +368,7 @@ def parse_arguments() -> argparse.Namespace:
         "-p",
         "--print",
         action="store_true",
-        help="print first line only",
+        help="print the first line only for each filtered block",
     )
 
     args = parser.parse_args()
@@ -377,7 +378,16 @@ def parse_arguments() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_arguments()
-
+    
+    if args.about:
+        print(
+        "author: Andrea Querci\n"
+        "version: 1.0\n"
+        "project: https://github.com/pyquerci/f5finder\n"
+        "license: GPLv2"
+        )
+        return
+    
     has_stdin = not sys.stdin.isatty()
 
     if has_stdin:
