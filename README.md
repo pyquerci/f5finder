@@ -49,7 +49,7 @@ A pre-compiled Windows executable is included in the repository, built with PyIn
 pyinstaller --onefile f5finder.py
 ```
 
-No Python installation is needed, just download and run `f5finder.exe`. For convenience, you can add it to a folder in your system `PATH` to invoke it from any directory — for example, I keep it in `C:\Tools\f5finder`.
+No Python installation is needed, just download and run `f5finder.exe`. For convenience, you can add it to a folder in your system `PATH` to invoke it from any directory; for example, I keep mine in `C:\Tools\f5finder`.
 
 ---
 
