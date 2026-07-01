@@ -224,23 +224,24 @@ def valid_network(value: str) -> str:
         raise SystemExit(f"error: invalid network: {value}")
 
 
-def load_file(path: str) -> str:
-    file_path = Path(path)
+def load_file(filename: str) -> str:
+    file_path = Path(filename)
 
     if not file_path.is_file():
-        raise SystemExit(f"error: file not found: {path}")
+        raise SystemExit(f"error: file not found: {filename}")
 
     try:
         return file_path.read_text(encoding="utf-8")
 
     except PermissionError:
-        raise SystemExit(f"error: permission denied: {path}")
+        raise SystemExit(f"error: permission denied: {filename}")
 
 
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        usage=("%(prog)s [-c BIGIP_BASE BIGIP] "
+        usage=("%(prog)s [-h] "
             "[-a] "
+            "[-c BIGIP_BASE BIGIP] "
             "[-f string [string ...]] "
             "[-Fs string [string ...]] "
             "[-Fe string [string ...]] "
@@ -275,7 +276,10 @@ def parse_arguments() -> argparse.Namespace:
         "--config",
         nargs=2,
         metavar=("BIGIP_BASE", "BIGIP"),
-        help="BIG-IP config files (default: bigip_base.conf and bigip.conf)",
+        help=(
+            "BIG-IP configuration files "
+            f"(default: {DEFAULT_BIGIP_BASE} and {DEFAULT_BIGIP})"
+        ),
     )
 
     parser.add_argument(
