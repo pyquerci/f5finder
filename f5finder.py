@@ -319,6 +319,13 @@ def parse_arguments() -> argparse.Namespace:
     )
 
     parser.add_argument(
+        "-Fm",
+        "--find-menu",
+        nargs="+",
+        help="filter by section header (STRING*)",
+    )
+
+    parser.add_argument(
         "-e",
         "--exclude",
         nargs="+",
@@ -352,13 +359,6 @@ def parse_arguments() -> argparse.Namespace:
         nargs="+",
         type=valid_network,
         help="exclude IP/network match (*IPv4/PREFIX*)",
-    )
-
-    parser.add_argument(
-        "-Fm",
-        "--find-menu",
-        nargs="+",
-        help="filter by section header (STRING*)",
     )
 
     parser.add_argument(
