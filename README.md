@@ -43,7 +43,13 @@ No installation required. Run directly with Python.
 
 ### Windows
 
-A pre-compiled Windows executable is included in the repository, built with PyInstaller 6.19.0. No Python installation is needed, just download and run `f5finder.exe`. For convenience, you can add it to a folder in your system `PATH` to invoke it from any directory.
+A pre-compiled Windows executable is included in the repository, built with PyInstaller 6.19.0 using the command:
+
+```bash
+pyinstaller --onefile f5finder.py
+```
+
+No Python installation is needed, just download and run `f5finder.exe`. For convenience, you can add it to a folder in your system `PATH` to invoke it from any directory — for example, I keep it in `C:\Tools\f5finder`.
 
 ---
 
@@ -180,8 +186,8 @@ f5finder.py -Fm "ltm virtual " | f5finder -f MY_POOL
 
 This syntax is **not natively available on Windows**. To use it on Windows, you need one of the following:
 
-- **WSL** (Windows Subsystem for Linux) provides a native Linux shell environment directly on Windows
-- **Cmder** a popular open source terminal emulator for Windows (MIT license) that supports Unix-style commands and piping
+- **WSL** (Windows Subsystem for Linux) provides a native Linux shell environment directly on Windows.
+- **Cmder** a popular open source terminal emulator for Windows (MIT license) that supports Unix-style commands and piping.
 
 ---
 
