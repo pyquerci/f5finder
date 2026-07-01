@@ -50,8 +50,9 @@ A pre-compiled Windows executable is included in the repository, built with PyIn
 ## Usage
 
 ```
-f5finder.py [-c BIGIP_BASE BIGIP]
+f5finder.py [-h]
             [-a]
+            [-c BIGIP_BASE BIGIP]
             [-f string [string ...]]
             [-Fs string [string ...]]
             [-Fe string [string ...]]
@@ -88,7 +89,7 @@ f5finder.py [-c BIGIP_BASE BIGIP]
 | `-Em, --exclude-menu string [string ...]` | Exclude results: skip blocks whose first line starts with any of the given prefixes (`STRING*`). |
 | `-p, --print` | Print only the first line of each matching block instead of the full block; it gives you a quick idea of which blocks you filtered. |
 
-If no include filter (`-f`, `-Fs`, `-Fe`, `-Fw`, `-Fn`) is specified, all blocks are returned (subject to any active exclude filters). If a file is not found or cannot be read due to permission issues, `f5finder` exits with a clear error message.
+If no include filter (`-f`, `-Fs`, `-Fe`, `-Fw`, `-Fn` `-Fm`) is specified, all blocks are returned (subject to any active exclude filters). If a file is not found or cannot be read due to permission issues, `f5finder` exits with a clear error message.
 
 ### Examples
 
