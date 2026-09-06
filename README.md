@@ -196,9 +196,10 @@ This syntax is **not natively available on Windows**. To use it on Windows, you 
 `f5finder` has been tested against a production F5 BIG-IP configuration extracted from a system running version **17.5.1.5-0.0.6**, virtualized on **F5OS 1.8.3-23493**, on **F5-R5800** hardware. No issues were encountered during its use. The provisioned modules in use were `Local Traffic (LTM)`, `Access Policy (APM)`, `iRules Language Extensions (iRulesLX)`, and `Application Visibility and Reporting (AVR)`.
 
 ---
+
 ## License
 
-This project is licensed under the **GNU General Public License v2.0 (GPLv2)**. You are free to use, modify, and distribute this software under the terms of that license. See the [LICENSE](LICENSE) file for the full license text.
+This project is licensed under the **GNU General Public License v3.0 (GPLv3)**. You are free to use, modify, and distribute this software under the terms of that license. See the [LICENSE](https://github.com/pyquerci/f5finder/blob/main/LICENSE) file for the full license text.
 
 ---
 
