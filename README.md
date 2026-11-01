@@ -215,6 +215,7 @@ If you value the work and want to help support its development, feel free to mak
 
 [![PayPal](https://img.shields.io/badge/PayPal-donate-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/pyquerci)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=white&labelColor=404040)](https://buymeacoffee.com/pyquerci)
+![Bank transfer](https://img.shields.io/badge/Bank%20Transfer-no%20fees-1f7a3d?style=for-the-badge&logo=sepa&logoColor=white&labelColor=404040)
 
 **Bank transfer** — within the EU and the rest of the SEPA area it is usually free on both sides, depending on your bank, and every cent arrives:
 
