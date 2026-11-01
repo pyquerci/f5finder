@@ -3,7 +3,6 @@
 [![release](https://img.shields.io/github/v/release/pyquerci/f5finder?style=flat-square&color=007ec6)](https://github.com/pyquerci/f5finder/releases)
 ![platform](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D6?style=flat-square)
 ![python](https://img.shields.io/badge/python-3.10%2B-3776AB?style=flat-square)
-[![downloads](https://img.shields.io/github/downloads/pyquerci/f5finder/total?style=flat-square&color=97ca00)](https://github.com/pyquerci/f5finder/releases)
 [![stars](https://img.shields.io/github/stars/pyquerci/f5finder?style=flat-square&color=dfb317)](https://github.com/pyquerci/f5finder/stargazers)
 [![license](https://img.shields.io/github/license/pyquerci/f5finder?style=flat-square&color=97ca00)](LICENSE)
 
