@@ -38,15 +38,14 @@ It is particularly useful during **migration activities**, when only specific po
 
 ---
 
-## Installation and Run
+## Installation
 
 ```bash
 git clone https://github.com/pyquerci/f5finder.git
 cd f5finder
-python f5finder.py
 ```
 
-No installation required. Run directly with Python.
+No installation required. Run it directly with Python from the project directory.
 
 ### Windows
 
