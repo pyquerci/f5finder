@@ -38,11 +38,12 @@ It is particularly useful during **migration activities**, when only specific po
 
 ---
 
-## Installation
+## Installation and Run
 
 ```bash
 git clone https://github.com/pyquerci/f5finder.git
 cd f5finder
+python f5finder.py
 ```
 
 No installation required. Run directly with Python.
@@ -223,4 +224,3 @@ If you value the work and want to help support its development, feel free to mak
 | IBAN | `IT60Y0347501605000338088206` |
 | BIC/SWIFT | `INGBITD1XXX` |
 | Account holder | Andrea Querci |
-
