@@ -213,5 +213,14 @@ This project is licensed under the **GNU General Public License v3.0 (GPLv3)**. 
 
 If you value the work and want to help support its development, feel free to make a donation. Your support will be greatly appreciated:
 
-- PayPal: https://paypal.me/pyquerci
-- Buy Me a Coffee: https://buymeacoffee.com/pyquerci
+[![PayPal](https://img.shields.io/badge/PayPal-donate-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/pyquerci)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=white&labelColor=404040)](https://buymeacoffee.com/pyquerci)
+
+**Bank transfer** — no fees, every cent arrives:
+
+| Field | Value |
+| --- | --- |
+| IBAN | `IT60Y0347501605000338088206` |
+| BIC/SWIFT | `INGBITD1XXX` |
+| Account holder | Andrea Querci |
+
