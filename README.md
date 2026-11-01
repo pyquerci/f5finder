@@ -222,7 +222,7 @@ The quick way, with a PayPal account or a credit/debit card through Buy Me a Cof
 
 ### Bank transfer
 
-Another solution is the Bank transfer, which keeps nothing along the way. Within the EU and the rest of the SEPA area it is usually free on both sides, depending on your bank, and every cent arrives:
+Another option is a bank transfer, where no platform takes a cut. Within the EU and the rest of the SEPA area it is usually free on both sides, depending on your bank, and every cent arrives:
 
 | Field | Value |
 | --- | --- |
